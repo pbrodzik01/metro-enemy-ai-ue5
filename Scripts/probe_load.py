@@ -1,0 +1,10 @@
+import unreal
+unreal.log("PROBE: start")
+level_subsystem = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
+unreal.log("PROBE: got level subsystem")
+unreal.AssetRegistryHelpers.get_asset_registry().scan_paths_synchronous(["/Game/Mapy"], True)
+unreal.log("PROBE: scanned")
+ok = level_subsystem.load_level("/Game/Mapy/Metro_Rozbudowana")
+unreal.log("PROBE: loaded %s" % ok)
+actors = unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors()
+unreal.log("PROBE: actors %d" % len(actors))
